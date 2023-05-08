@@ -1,11 +1,16 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-class AppModule extends Module{
+import 'module/home/home_page.dart';
 
+class AppModule extends Module {
   @override
   List<Bind<Object>> get binds => [];
 
   @override
-  List<ModularRoute> get routes => [];
-
+  List<ModularRoute> get routes => [
+        ChildRoute(
+          '/',
+          child: (context, args) => const HomePage(),
+        )
+      ];
 }
