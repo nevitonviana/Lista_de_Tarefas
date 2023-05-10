@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import ' liste/list_page.dart';
 import 'home/home_page.dart';
 
 class Base extends StatefulWidget {
@@ -12,13 +13,12 @@ class Base extends StatefulWidget {
 class _BaseState extends State<Base> {
   final List<Widget> page = [
     const HomePage(),
-    Container(),
+    const ListPage(),
   ];
-  int selectPage = 0;
+  int selectPage = 1;
+
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       body: page[selectPage],
       bottomNavigationBar: BottomNavigationBar(
@@ -29,8 +29,10 @@ class _BaseState extends State<Base> {
             });
           },
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.save_as_rounded), label: "Salva"),
-            BottomNavigationBarItem(icon: Icon(Icons.list_alt_outlined), label: "Listar"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.save_as_rounded), label: "Salva"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.list_alt_outlined), label: "Listar"),
           ]),
     );
   }
