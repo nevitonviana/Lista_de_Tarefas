@@ -7,7 +7,7 @@ class ProductModels {
   final String? description;
 
   ProductModels({
-    required this.id,
+    this.id,
     required this.name,
     required this.barcode,
     required this.date,
@@ -28,12 +28,12 @@ class ProductModels {
 
   factory ProductModels.fromMap(Map<String, dynamic> map) {
     return ProductModels(
-      id: map['id'] ,
-      name: map['name'] as String,
-      barcode: map['barcode'] as String,
-      date: map['date'] as String,
-      option: map['option'] as String,
-      description: map['description'] as String,
+      id: map['id'],
+      name: map['name'],
+      barcode: map['barcode'],
+      date: map['date'],
+      option: map['option'],
+      description: map['description'],
     );
   }
 

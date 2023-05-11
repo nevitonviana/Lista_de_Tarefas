@@ -1,4 +1,5 @@
 import 'package:sqflite/sqflite.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 
@@ -21,11 +22,11 @@ class SqfliteDb {
     if (_database != null) {
       return _database;
     } else {
-      return _database = await inicialixaDB();
+      return _database = await _inicialixaDB();
     }
   }
 
-  inicialixaDB() async {
+  _inicialixaDB() async {
     final databasesPath = await getDatabasesPath();
     final path = join(databasesPath, 'listProduct.db');
     var db = await openDatabase(path, version: 1, onCreate: _onCreate);
@@ -33,12 +34,13 @@ class SqfliteDb {
   }
 
   _onCreate(Database db, int version) async {
-    String sql = """CREATE TABLE ListProduct(
+    String sql = """CREATE TABLE $_NAMETABLE(
         id INTEGER PRIMARY KEY AUTOINCREMENT,      
+        name VARCHAR NOT NULL,
         barcode VARCHAR NOT NULL,
         date VARCHAR NOT NULL,
         option VARCHAR NOT NULL,
-        description VARCHAR,
+        description VARCHAR
         );""";
     await db.execute(sql);
   }
@@ -50,20 +52,20 @@ class SqfliteDb {
     } on Exception {
       rethrow;
     } finally {
-      await sql.close();
+      // await sql.close();
     }
   }
 
-  Future<List> get({required String option}) async {
+  Future<List<Map>> get({required String option}) async {
     var sql = await db;
     try {
-      final result =
-          await sql.rawQuery("SELECT * FROM $_NAMETABLE ORDER BY data DESC");
+      var result =
+          await sql.rawQuery("SELECT * FROM $_NAMETABLE ORDER BY date DESC");
       return result;
     } on Exception {
       rethrow;
     } finally {
-      await sql.close();
+      // await sql.close();
     }
   }
 
@@ -76,7 +78,7 @@ class SqfliteDb {
     } on Exception {
       rethrow;
     } finally {
-      await sql.close();
+      // await sql.close();
     }
   }
 
