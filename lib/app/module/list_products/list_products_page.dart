@@ -1,27 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
+import '../base_controller.dart';
 import 'widget/card_list_custom.dart';
 
 class ListProductsPage extends StatelessWidget {
-  final String name;
+  final String _name;
 
-  const ListProductsPage({Key? key, required this.name}) : super(key: key);
+  const ListProductsPage({
+    Key? key,
+    required String name,
+  })  : _name = name,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<BaseController>();
     return Scaffold(
       backgroundColor: Colors.grey,
-      appBar: AppBar(title: Text(name), centerTitle: true),
+      appBar: AppBar(title: Text(_name), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25),
         child: ListView.builder(
-          itemBuilder: (context, index) => CardListCustom(
-            name: "teste",
-            barcode: "code",
-            date: "14/85",
-            onLongPress: () {},
-          ),
-        ),
+            itemCount: controller.listProduct.length,
+            itemBuilder: (context, index) {
+              final product = controller.listProduct[index];
+              return CardListCustom(
+                name: product.name,
+                barcode: product.barcode,
+                date: product.date,
+                onLongPress: () {},
+              );
+            }),
       ),
     );
   }

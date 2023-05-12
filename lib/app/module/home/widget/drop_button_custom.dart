@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:lista_tarefas/app/module/home/home_controller.dart';
+
+import '../../base_controller.dart';
 
 class DropButtonCustom extends StatelessWidget {
-  final HomeController _controller;
+  final BaseController _controller;
 
-  const DropButtonCustom({Key? key, required HomeController controller})
+  const DropButtonCustom({Key? key, required BaseController controller})
       : _controller = controller,
         super(key: key);
 

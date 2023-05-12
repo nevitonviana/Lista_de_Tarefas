@@ -1,17 +1,18 @@
 import 'package:mobx/mobx.dart';
 
-import '../../core/helpers/format_date.dart';
-import '../../models/product_models.dart';
-import '../../service/product_service.dart';
+import '../core/helpers/format_date.dart';
+import '../models/product_models.dart';
+import '../service/product_service.dart';
 
-part 'home_controller.g.dart';
+part 'base_controller.g.dart';
 
-class HomeController = _HomeControllerBase with _$HomeController;
+// ignore: library_private_types_in_public_api
+class BaseController = _BaseControllerBase with _$BaseController;
 
-abstract class _HomeControllerBase with Store {
+abstract class _BaseControllerBase with Store {
   final ProductService _productService;
 
-  _HomeControllerBase({required ProductService productService})
+  _BaseControllerBase({required ProductService productService})
       : _productService = productService;
 
   @observable
@@ -53,7 +54,6 @@ abstract class _HomeControllerBase with Store {
   Future<void> get({required String option}) async {
     final result = await _productService.get(option: option);
     listProduct = result;
-    print(listProduct.length);
   }
 
   Future<void> update({required ProductModels productModels}) async {

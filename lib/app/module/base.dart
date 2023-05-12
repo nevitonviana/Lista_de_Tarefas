@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:lista_tarefas/app/module/home/home_controller.dart';
 
 import 'home/home_page.dart';
 import 'options/options_page.dart';
@@ -18,12 +16,6 @@ class _BaseState extends State<Base> {
     const OptionsPage(),
   ];
   int selectPage = 0;
-@override
-  void initState() {
-    super.initState();
-    final a = Modular.get<HomeController>();
-    a.get(option: "option");
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

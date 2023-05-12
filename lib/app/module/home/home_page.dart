@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../core/widget/messages.dart';
-import 'home_controller.dart';
+import '../base_controller.dart';
 import 'widget/drop_button_custom.dart';
 import 'widget/button_custom.dart';
 import 'widget/dialog_custom.dart';
@@ -21,8 +21,7 @@ class HomePage extends StatelessWidget {
     final amountEc = TextEditingController();
     final observationsEc = TextEditingController();
 
-    String? date;
-    final controller = Modular.get<HomeController>();
+    final controller = Modular.get<BaseController>();
 
     return Scaffold(
       appBar: AppBar(

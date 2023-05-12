@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../base_controller.dart';
 import 'widget/list_tile_custom.dart';
 
-class OptionsPage extends StatelessWidget {
+class OptionsPage extends StatefulWidget {
   const OptionsPage({Key? key}) : super(key: key);
+
+  @override
+  State<OptionsPage> createState() => _OptionsPageState();
+}
+
+class _OptionsPageState extends State<OptionsPage> {
+  final controller = Modular.get<BaseController>();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.get(option: "option");
+  }
 
   @override
   Widget build(BuildContext context) {

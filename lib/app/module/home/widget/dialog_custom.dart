@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lista_tarefas/app/module/home/home_controller.dart';
+
+import '../../base_controller.dart';
 
 class DialogCustom {
   Future<void> showDate(
       {required BuildContext context,
-      required HomeController controller}) async {
+      required BaseController controller}) async {
     final date = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),

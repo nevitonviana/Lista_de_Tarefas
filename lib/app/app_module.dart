@@ -2,7 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'core/database/sqflite_db.dart';
 import 'module/base.dart';
-import 'module/home/home_controller.dart';
+import 'module/base_controller.dart';
 import 'module/home/home_page.dart';
 import 'module/list_products/list_products_page.dart';
 import 'module/options/options_page.dart';
@@ -14,7 +14,7 @@ class AppModule extends Module {
   List<Bind<Object>> get binds => [
         Bind.lazySingleton((i) => SqfliteDb()),
         Bind.lazySingleton<ProductService>((i) => ProductServiceImpl()),
-        Bind.lazySingleton((i) => HomeController(productService: i())),
+        Bind.lazySingleton((i) => BaseController(productService: i())),
       ];
 
   @override
@@ -33,7 +33,8 @@ class AppModule extends Module {
         ),
         ChildRoute(
           '/listProducts',
-          child: (context, args) => ListProductsPage(name: args.data),
+          child: (context, args) =>
+              ListProductsPage(name: args.data),
         ),
       ];
 }

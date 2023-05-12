@@ -62,7 +62,6 @@ class SqfliteDb {
     try {
       var result =
           await sql.rawQuery("SELECT * FROM $_NAMETABLE ORDER BY date DESC");
-      print(result);
       return result;
     } on Exception {
       rethrow;

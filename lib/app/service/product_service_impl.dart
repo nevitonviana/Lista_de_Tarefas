@@ -16,7 +16,6 @@ class ProductServiceImpl extends ProductService {
 
   @override
   Future<List<ProductModels>> get({required String option}) async {
-    var listProduct = <ProductModels>[];
     try {
       final db = SqfliteDb();
       final result = await db.get(option: option);
