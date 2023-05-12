@@ -60,8 +60,8 @@ class SqfliteDb {
   Future<List<Map>> get({required String option}) async {
     var sql = await db;
     try {
-      var result =
-          await sql.rawQuery("SELECT * FROM $_NAMETABLE ORDER BY date DESC");
+      var result = await sql.rawQuery(
+          "SELECT * FROM $_NAMETABLE WHERE option = '$option' ORDER BY date ASC");
       return result;
     } on Exception {
       rethrow;

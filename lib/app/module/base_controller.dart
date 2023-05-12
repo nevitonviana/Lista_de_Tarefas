@@ -39,7 +39,7 @@ abstract class _BaseControllerBase with Store {
   }
 
   @action
-  void setDate(String value) => date = Formatter().data(value);
+  void setDate(String value) => date = value;
 
   Future<void> create(
       {required String name,
@@ -52,6 +52,7 @@ abstract class _BaseControllerBase with Store {
   }
 
   Future<void> get({required String option}) async {
+    listProduct.clear();
     final result = await _productService.get(option: option);
     listProduct = result;
   }

@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:validatorless/validatorless.dart';
 
+import '../../core/helpers/format_date.dart';
 import '../../core/widget/messages.dart';
 import '../base_controller.dart';
 import 'widget/drop_button_custom.dart';
@@ -97,7 +98,7 @@ class HomePage extends StatelessWidget {
                       ),
                       Observer(builder: (_) {
                         return Text(
-                          controller.date,
+                          Formatter().data( controller.date),
                           style: const TextStyle(fontSize: 18),
                         );
                       }),

@@ -22,19 +22,19 @@ class DropButtonCustom extends StatelessWidget {
         value: _controller.option,
         items: const [
           DropdownMenuItem(
-            value: 'Rebaixa',
+            value: 'rebaixa',
             child: Text("Rebaixa"),
           ),
           DropdownMenuItem(
-            value: "Quebra",
+            value: "quebra",
             child: Text("Quebra"),
           ),
           DropdownMenuItem(
-            value: "Transformar",
+            value: "transformar",
             child: Text("Transformar"),
           ),
           DropdownMenuItem(
-            value: "Outros",
+            value: "outros",
             child: Text("Outros"),
           ),
         ],

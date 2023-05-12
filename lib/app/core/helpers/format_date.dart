@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class Formatter {
   data(String? data) {
-    if (data.toString() != "null") {
+    if (data.toString() != "null" && data != "") {
       initializeDateFormatting("pt_BR");
       var formatDate = DateFormat.MEd('pt_BR');
       DateTime convertDate = DateTime.parse(data!);
