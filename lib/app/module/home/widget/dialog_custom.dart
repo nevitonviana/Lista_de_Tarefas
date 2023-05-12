@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lista_tarefas/app/module/home/home_controller.dart';
 
 class DialogCustom {
-  Future<String?> showDate({required BuildContext context}) async {
-    final data = await showDatePicker(
+  Future<void> showDate(
+      {required BuildContext context,
+      required HomeController controller}) async {
+    final date = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2020),
@@ -10,6 +13,6 @@ class DialogCustom {
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       locale: const Locale("pt", 'BR'),
     );
-    return data.toString();
+    controller.setDate(date.toString());
   }
 }

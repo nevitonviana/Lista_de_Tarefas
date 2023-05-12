@@ -4,6 +4,7 @@ class ProductModels {
   final String barcode;
   final String date;
   final String option;
+  final String? amount;
   final String? description;
 
   ProductModels({
@@ -12,6 +13,7 @@ class ProductModels {
     required this.barcode,
     required this.date,
     required this.option,
+    this.amount,
     this.description,
   });
 
@@ -22,6 +24,7 @@ class ProductModels {
       'barcode': barcode,
       'date': date,
       'option': option,
+      'amount': amount,
       'description': description,
     };
   }
@@ -33,6 +36,7 @@ class ProductModels {
       barcode: map['barcode'],
       date: map['date'],
       option: map['option'],
+      amount: map['amount'],
       description: map['description'],
     );
   }
@@ -43,6 +47,7 @@ class ProductModels {
     String? barcode,
     String? date,
     String? option,
+    String? amount,
     String? description,
   }) {
     return ProductModels(
@@ -51,6 +56,7 @@ class ProductModels {
       barcode: barcode ?? this.barcode,
       date: date ?? this.date,
       option: option ?? this.option,
+      amount: amount ?? this.amount,
       description: description ?? this.description,
     );
   }

@@ -1,6 +1,6 @@
 import 'package:lista_tarefas/app/models/product_models.dart';
 
-import '../core/sqflite_db.dart';
+import '../core/database/sqflite_db.dart';
 import 'product_service.dart';
 
 class ProductServiceImpl extends ProductService {

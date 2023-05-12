@@ -1,0 +1,66 @@
+import 'package:mobx/mobx.dart';
+
+import '../../core/helpers/format_date.dart';
+import '../../models/product_models.dart';
+import '../../service/product_service.dart';
+
+part 'home_controller.g.dart';
+
+class HomeController = _HomeControllerBase with _$HomeController;
+
+abstract class _HomeControllerBase with Store {
+  final ProductService _productService;
+
+  _HomeControllerBase({required ProductService productService})
+      : _productService = productService;
+
+  @observable
+  List listProduct = <ProductModels>[];
+
+  @observable
+  String? option;
+
+  @action
+  void setOption(String value) => option = value;
+
+  @observable
+  String date = '';
+
+  @computed
+  bool get validOD => date.isNotEmpty && option != null;
+
+  String get validError {
+    if (!validOD) {
+      return "Campos Data e Opções São Obrigatorio";
+    } else {
+      return '';
+    }
+  }
+
+  @action
+  void setDate(String value) => date = Formatter().data(value);
+
+  Future<void> create(
+      {required String name,
+      required String barcode,
+      String? amount,
+      String? observations}) async {
+    final productModels = ProductModels(
+        name: name, barcode: barcode, date: date, option: option!);
+    await _productService.create(productModels: productModels);
+  }
+
+  Future<void> get({required String option}) async {
+    final result = await _productService.get(option: option);
+    listProduct = result;
+    print(listProduct.length);
+  }
+
+  Future<void> update({required ProductModels productModels}) async {
+    await _productService.update(productModels: productModels);
+  }
+
+  Future<void> delete({required int id}) async {
+    await _productService.delete(id: id);
+  }
+}

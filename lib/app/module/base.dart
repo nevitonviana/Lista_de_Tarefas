@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:lista_tarefas/app/module/home/home_controller.dart';
 
-import '../service/product_service_impl.dart';
 import 'home/home_page.dart';
 import 'options/options_page.dart';
 
@@ -17,23 +18,12 @@ class _BaseState extends State<Base> {
     const OptionsPage(),
   ];
   int selectPage = 0;
-
-  tt() async {
-    final a = ProductServiceImpl();
-    // await a.create(
-    //     productModels: ProductModels(
-    //         name: "name", barcode: "barcode", date: "date", option: "option2",description: "2"));
-    // await a.delete(id: 4);
-   final w=  await a.get(option: 'option');
-   print(w.length);
-  }
-
-  @override
+@override
   void initState() {
     super.initState();
-    tt();
+    final a = Modular.get<HomeController>();
+    a.get(option: "option");
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

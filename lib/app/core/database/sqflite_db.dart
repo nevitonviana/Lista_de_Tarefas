@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 
-import '../models/product_models.dart';
+import '../../models/product_models.dart';
 
 class SqfliteDb {
   static final SqfliteDb _dataDb = SqfliteDb._internal();
@@ -40,6 +40,7 @@ class SqfliteDb {
         barcode VARCHAR NOT NULL,
         date VARCHAR NOT NULL,
         option VARCHAR NOT NULL,
+        amount VARCHAR,
         description VARCHAR
         );""";
     await db.execute(sql);
@@ -61,6 +62,7 @@ class SqfliteDb {
     try {
       var result =
           await sql.rawQuery("SELECT * FROM $_NAMETABLE ORDER BY date DESC");
+      print(result);
       return result;
     } on Exception {
       rethrow;
