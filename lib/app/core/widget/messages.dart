@@ -16,4 +16,18 @@ class Messages {
       ),
     );
   }
+
+  static void success({required BuildContext context}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          "Salvo com sucesso",
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+        ),
+        elevation: 5,
+        backgroundColor: Colors.blue,
+      ),
+    );
+  }
 }

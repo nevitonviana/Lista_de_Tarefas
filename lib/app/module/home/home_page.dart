@@ -31,10 +31,19 @@ class HomePage extends StatelessWidget {
     controller.date = _productModels?.date ?? "";
     controller.setOption(_productModels?.option);
 
+    clearField() {
+      nameEc.clear();
+      barcodeEc.clear();
+      amountEc.clear();
+      descriptionEc.clear();
+      controller.date = '';
+      controller.option = null;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          _productModels != null ? "Listar Tarefas" : "Atualizar",
+          _productModels == null ? "Listar Tarefas" : "Atualizar",
           textAlign: TextAlign.center,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -134,6 +143,9 @@ class HomePage extends StatelessWidget {
                           barcode: barcodeEc.text,
                           amount: amountEc.text,
                           observations: descriptionEc.text);
+                      // ignore: use_build_context_synchronously
+                      Messages.success(context: context);
+                      clearField();
                     } else if (_productModels != null && valid) {
                       await controller.update(
                           productModels: _productModels!.copyWith(
