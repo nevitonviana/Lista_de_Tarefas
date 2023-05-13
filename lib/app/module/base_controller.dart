@@ -61,7 +61,8 @@ abstract class _BaseControllerBase with Store {
     await _productService.update(productModels: productModels);
   }
 
-  Future<void> delete({required int id}) async {
-    await _productService.delete(id: id);
+  Future<void> delete({required ProductModels productModels}) async {
+    await _productService.delete(id: productModels.id!);
+    await get(option: productModels.option);
   }
 }

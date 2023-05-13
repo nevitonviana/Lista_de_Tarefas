@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../core/helpers/format_date.dart';
+import '../../core/widget/dialog_custom.dart';
 import '../base_controller.dart';
 import 'widget/card_list_custom.dart';
 
@@ -35,20 +36,27 @@ class _ListProductsPageState extends State<ListProductsPage> {
       appBar: AppBar(title: Text(widget._name), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25),
-        child: Observer(builder: (context) {
-          return ListView.builder(
+        child: Observer(
+          builder: (context) {
+            return ListView.builder(
               itemCount: _controller.listProduct.length,
               itemBuilder: (context, index) {
                 final product = _controller.listProduct[index];
-                print(product.option);
                 return CardListCustom(
                   name: product.name,
                   barcode: product.barcode,
                   date: Formatter().data(product.date),
-                  onLongPress: () {},
+                  onLongPress: () async {
+                    await DialogCustom().bottomSheetCustom(
+                        context: context,
+                        productModels: product,
+                        controller: _controller);
+                  },
                 );
-              });
-        }),
+              },
+            );
+          },
+        ),
       ),
     );
   }

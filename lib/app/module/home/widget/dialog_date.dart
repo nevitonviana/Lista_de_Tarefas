@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../base_controller.dart';
 
-class DialogCustom {
+class DialogDate {
   Future<void> showDate(
       {required BuildContext context,
       required BaseController controller}) async {

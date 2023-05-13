@@ -7,8 +7,8 @@ import '../../core/helpers/format_date.dart';
 import '../../core/widget/messages.dart';
 import '../base_controller.dart';
 import 'widget/drop_button_custom.dart';
-import 'widget/button_custom.dart';
-import 'widget/dialog_custom.dart';
+import '../../core/widget/button_custom.dart';
+import 'widget/dialog_date.dart';
 import 'widget/text_field_custom.dart';
 
 class HomePage extends StatelessWidget {
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          await DialogCustom().showDate(
+                          await DialogDate().showDate(
                               context: context, controller: controller);
                         },
                         icon:
@@ -98,7 +98,7 @@ class HomePage extends StatelessWidget {
                       ),
                       Observer(builder: (_) {
                         return Text(
-                          Formatter().data( controller.date),
+                          Formatter().data(controller.date),
                           style: const TextStyle(fontSize: 18),
                         );
                       }),
@@ -110,10 +110,11 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 ButtonCustom(
-                  name: "Escanear",
-                  icon: Icons.camera_enhance_outlined,
-                  onTap: () {},
-                ),
+                    name: "Escanear",
+                    icon: Icons.camera_enhance_outlined,
+                    onTap: () {
+
+                    }),
                 const SizedBox(height: 10),
                 ButtonCustom(
                   name: "salvar",

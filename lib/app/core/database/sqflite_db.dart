@@ -63,7 +63,7 @@ class SqfliteDb {
       var result = await sql.rawQuery(
           "SELECT * FROM $_NAMETABLE WHERE option = '$option' ORDER BY date ASC");
       return result;
-    } on Exception {
+    } catch (e) {
       rethrow;
     } finally {
       // await sql.close();
@@ -91,8 +91,6 @@ class SqfliteDb {
       return result;
     } on Exception {
       rethrow;
-    } finally {
-      await sql.close();
     }
   }
 }

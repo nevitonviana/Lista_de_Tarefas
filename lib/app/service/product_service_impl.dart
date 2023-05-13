@@ -24,6 +24,8 @@ class ProductServiceImpl extends ProductService {
       }).toList();
       return listProduct;
     } catch (e) {
+      print(e.toString());
+      print(e);
       throw e;
       //ToDO
     }
@@ -41,6 +43,7 @@ class ProductServiceImpl extends ProductService {
       final db = SqfliteDb();
       await db.delete(id: id);
     } catch (e) {
+      print(e);
       //ToDO
     }
   }
