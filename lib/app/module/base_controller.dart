@@ -1,6 +1,6 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
-import '../core/helpers/format_date.dart';
 import '../models/product_models.dart';
 import '../service/product_service.dart';
 
@@ -22,7 +22,7 @@ abstract class _BaseControllerBase with Store {
   String? option;
 
   @action
-  void setOption(String value) => option = value;
+  void setOption(String? value) => option = value;
 
   @observable
   String date = '';
@@ -58,7 +58,13 @@ abstract class _BaseControllerBase with Store {
   }
 
   Future<void> update({required ProductModels productModels}) async {
-    await _productService.update(productModels: productModels);
+    var product = productModels;
+    product = productModels;
+    await _productService.update(
+        productModels: product.copyWith(date: date, option: option));
+    Modular.to.pop();
+    Modular.to.pop();
+    await get(option: productModels.option);
   }
 
   Future<void> delete({required ProductModels productModels}) async {

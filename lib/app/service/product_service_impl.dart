@@ -24,17 +24,19 @@ class ProductServiceImpl extends ProductService {
       }).toList();
       return listProduct;
     } catch (e) {
-      print(e.toString());
-      print(e);
-      throw e;
+      rethrow;
       //ToDO
     }
   }
 
   @override
-  Future<void> update({required ProductModels productModels}) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<void> update({required ProductModels productModels}) async {
+    try {
+      final db = SqfliteDb();
+      await db.update(productModels: productModels);
+    } catch (e) {
+      //TODO
+    }
   }
 
   @override
@@ -43,7 +45,6 @@ class ProductServiceImpl extends ProductService {
       final db = SqfliteDb();
       await db.delete(id: id);
     } catch (e) {
-      print(e);
       //ToDO
     }
   }

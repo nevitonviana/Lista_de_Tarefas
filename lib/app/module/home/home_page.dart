@@ -5,6 +5,7 @@ import 'package:validatorless/validatorless.dart';
 
 import '../../core/helpers/format_date.dart';
 import '../../core/widget/messages.dart';
+import '../../models/product_models.dart';
 import '../base_controller.dart';
 import 'widget/drop_button_custom.dart';
 import '../../core/widget/button_custom.dart';
@@ -12,24 +13,30 @@ import 'widget/dialog_date.dart';
 import 'widget/text_field_custom.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final ProductModels? _productModels;
+
+  const HomePage({Key? key, ProductModels? productModels})
+      : _productModels = productModels,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-    final nameEc = TextEditingController();
-    final barcodeEc = TextEditingController();
-    final amountEc = TextEditingController();
-    final observationsEc = TextEditingController();
-
+    final nameEc = TextEditingController(text: _productModels?.name);
+    final barcodeEc = TextEditingController(text: _productModels?.barcode);
+    final amountEc = TextEditingController(text: _productModels?.amount);
+    final descriptionEc =
+        TextEditingController(text: _productModels?.description);
     final controller = Modular.get<BaseController>();
+    controller.date = _productModels?.date ?? "";
+    controller.setOption(_productModels?.option);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Listar Tarefas",
+        title: Text(
+          _productModels != null ? "Listar Tarefas" : "Atualizar",
           textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
@@ -69,7 +76,7 @@ class HomePage extends StatelessWidget {
                       children: [
                         const SizedBox(height: 15),
                         TextFieldCustom(
-                          textEditingController: observationsEc,
+                          textEditingController: descriptionEc,
                           label: "Obiservações",
                           icon: const Icon(
                             Icons.description_rounded,
@@ -88,7 +95,9 @@ class HomePage extends StatelessWidget {
                       IconButton(
                         onPressed: () async {
                           await DialogDate().showDate(
-                              context: context, controller: controller);
+                              context: context,
+                              controller: controller,
+                              dateTime: _productModels?.date);
                         },
                         icon:
                             const Icon(Icons.calendar_month_outlined, size: 40),
@@ -112,21 +121,27 @@ class HomePage extends StatelessWidget {
                 ButtonCustom(
                     name: "Escanear",
                     icon: Icons.camera_enhance_outlined,
-                    onTap: () {
-
-                    }),
+                    onTap: () {}),
                 const SizedBox(height: 10),
                 ButtonCustom(
                   name: "salvar",
                   icon: Icons.save_rounded,
-                  onTap: () {
+                  onTap: () async {
                     final valid = formKey.currentState?.validate() ?? false;
-                    if (valid && controller.validOD) {
-                      controller.create(
+                    if (valid && controller.validOD && _productModels == null) {
+                      await controller.create(
                           name: nameEc.text,
                           barcode: barcodeEc.text,
                           amount: amountEc.text,
-                          observations: observationsEc.text);
+                          observations: descriptionEc.text);
+                    } else if (_productModels != null && valid) {
+                      await controller.update(
+                          productModels: _productModels!.copyWith(
+                        name: nameEc.text,
+                        barcode: barcodeEc.text,
+                        amount: amountEc.text,
+                        description: descriptionEc.text,
+                      ));
                     } else {
                       Messages.alert(
                           context: context, massage: controller.validError);

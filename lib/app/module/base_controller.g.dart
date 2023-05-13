@@ -68,7 +68,7 @@ mixin _$BaseController on _BaseControllerBase, Store {
       ActionController(name: '_BaseControllerBase', context: context);
 
   @override
-  void setOption(String value) {
+  void setOption(String? value) {
     final _$actionInfo = _$_BaseControllerBaseActionController.startAction(
         name: '_BaseControllerBase.setOption');
     try {

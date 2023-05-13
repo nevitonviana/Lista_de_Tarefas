@@ -52,8 +52,6 @@ class SqfliteDb {
       await sql.insert(_NAMETABLE, productModels.toMap());
     } on Exception {
       rethrow;
-    } finally {
-      // await sql.close();
     }
   }
 
@@ -65,8 +63,6 @@ class SqfliteDb {
       return result;
     } catch (e) {
       rethrow;
-    } finally {
-      // await sql.close();
     }
   }
 
@@ -78,8 +74,6 @@ class SqfliteDb {
       return result;
     } on Exception {
       rethrow;
-    } finally {
-      // await sql.close();
     }
   }
 

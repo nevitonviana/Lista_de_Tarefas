@@ -43,7 +43,10 @@ class DialogCustom {
                   color: Colors.blue,
                   name: "Editar",
                   icon: Icons.edit,
-                  onTap: () {},
+                  onTap: () async {
+                    await Modular.to
+                        .pushNamed("/home", arguments: productModels);
+                  },
                 ),
                 ButtonCustom(
                   width: 140,
