@@ -7,6 +7,7 @@ import '../../core/helpers/format_date.dart';
 import '../../core/widget/messages.dart';
 import '../../models/product_models.dart';
 import '../base_controller.dart';
+import 'widget/barcode_scanner.dart';
 import 'widget/drop_button_custom.dart';
 import '../../core/widget/button_custom.dart';
 import 'widget/dialog_date.dart';
@@ -130,7 +131,14 @@ class HomePage extends StatelessWidget {
                 ButtonCustom(
                     name: "Escanear",
                     icon: Icons.camera_enhance_outlined,
-                    onTap: () {}),
+                    onTap: () async {
+                      final result = await BarcodeScanner().scanner();
+                      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+                      print(result);
+                      if (result != '-1') {
+                        barcodeEc.text = result;
+                      }
+                    }),
                 const SizedBox(height: 10),
                 ButtonCustom(
                   name: "salvar",
