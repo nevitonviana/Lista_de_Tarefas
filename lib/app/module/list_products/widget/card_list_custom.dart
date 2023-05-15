@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/helpers/format_date.dart';
+import 'date_indicator.dart';
+
 class CardListCustom extends StatelessWidget {
   final String name;
   final String barcode;
@@ -22,7 +25,7 @@ class CardListCustom extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
       elevation: 6,
-      color: Colors.grey.shade100,
+      color:DateIndicator().validityColor(date: date) ,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: ListTile(
@@ -43,7 +46,7 @@ class CardListCustom extends StatelessWidget {
             ),
           ),
           trailing: Text(
-            date,
+            Formatter().data(date),
             style: const TextStyle(
               fontSize: 18,
               color: Colors.black,

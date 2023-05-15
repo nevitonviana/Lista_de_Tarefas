@@ -16,6 +16,30 @@ class _BaseState extends State<Base> {
     const OptionsPage(),
   ];
   int selectPage = 0;
+
+  tt() async {
+    final data = DateTime.parse('2023-05-16 00:00:00.000');
+
+    final c = DateTime.now().difference(data);
+
+    // if (c == 0) {
+    //   print('ja era');
+    // } else if (c >= -10) {
+    //   print('re');
+    // } else {
+    //   print('ainda nao');
+    // }
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    print(c.runtimeType);
+    print(c);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    tt();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

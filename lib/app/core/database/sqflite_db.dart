@@ -60,6 +60,7 @@ class SqfliteDb {
     try {
       var result = await sql.rawQuery(
           "SELECT * FROM $_NAMETABLE WHERE option = '$option' ORDER BY date ASC");
+      print(result[1]);
       return result;
     } catch (e) {
       rethrow;

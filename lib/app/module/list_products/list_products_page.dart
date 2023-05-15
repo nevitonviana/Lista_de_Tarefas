@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../core/helpers/format_date.dart';
 import '../../core/widget/dialog_custom.dart';
 import '../base_controller.dart';
 import 'widget/card_list_custom.dart';
@@ -46,9 +45,9 @@ class _ListProductsPageState extends State<ListProductsPage> {
                 return CardListCustom(
                   name: product.name,
                   barcode: product.barcode,
-                  date: Formatter().data(product.date),
-                  onTap: () {
-                    DialogView().viewData(
+                  date: product.date,
+                  onTap: () async {
+                    await DialogView().viewData(
                       context: context,
                       productModels: product,
                     );
