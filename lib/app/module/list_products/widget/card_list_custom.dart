@@ -5,13 +5,15 @@ class CardListCustom extends StatelessWidget {
   final String barcode;
   final String date;
   final VoidCallback onLongPress;
+  final VoidCallback onTap;
 
   const CardListCustom(
       {Key? key,
       required this.name,
       required this.barcode,
       required this.date,
-      required this.onLongPress})
+      required this.onLongPress,
+      required this.onTap})
       : super(key: key);
 
   @override
@@ -25,6 +27,7 @@ class CardListCustom extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: ListTile(
           onLongPress: onLongPress,
+          onTap: onTap,
           title: Text(
             name,
             style: const TextStyle(

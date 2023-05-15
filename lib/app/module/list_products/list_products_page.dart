@@ -6,6 +6,7 @@ import '../../core/helpers/format_date.dart';
 import '../../core/widget/dialog_custom.dart';
 import '../base_controller.dart';
 import 'widget/card_list_custom.dart';
+import 'widget/dialog_view.dart';
 
 class ListProductsPage extends StatefulWidget {
   final String _name;
@@ -46,6 +47,12 @@ class _ListProductsPageState extends State<ListProductsPage> {
                   name: product.name,
                   barcode: product.barcode,
                   date: Formatter().data(product.date),
+                  onTap: () {
+                    DialogView().viewData(
+                      context: context,
+                      productModels: product,
+                    );
+                  },
                   onLongPress: () async {
                     await DialogCustom().bottomSheetCustom(
                         context: context,

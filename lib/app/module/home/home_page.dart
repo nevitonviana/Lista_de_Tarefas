@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                 ),
                 Observer(builder: (_) {
                   return Visibility(
-                    visible: controller.option?.contains("Outros") ?? false,
+                    visible: controller.option?.contains("outros") ?? false,
                     child: Column(
                       children: [
                         const SizedBox(height: 15),
@@ -133,8 +133,6 @@ class HomePage extends StatelessWidget {
                     icon: Icons.camera_enhance_outlined,
                     onTap: () async {
                       final result = await BarcodeScanner().scanner();
-                      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-                      print(result);
                       if (result != '-1') {
                         barcodeEc.text = result;
                       }

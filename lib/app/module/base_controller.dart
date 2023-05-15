@@ -47,7 +47,12 @@ abstract class _BaseControllerBase with Store {
       String? amount,
       String? observations}) async {
     final productModels = ProductModels(
-        name: name, barcode: barcode, date: date, option: option!);
+        name: name,
+        barcode: barcode,
+        date: date,
+        option: option!,
+        amount: amount,
+        description: observations);
     await _productService.create(productModels: productModels);
   }
 
