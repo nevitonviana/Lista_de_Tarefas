@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/helpers/format_date.dart';
 import '../../../core/widget/button_custom.dart';
 import '../../../models/product_models.dart';
-import '../../base_controller.dart';
 import 'text_view.dart';
 
 class DialogView {
@@ -37,7 +36,6 @@ class DialogView {
             TextView(
                 label: "Descrição:",
                 name: productModels.description ?? "Sem Informações"),
-
           ],
         ),
         actionsAlignment: MainAxisAlignment.center,
