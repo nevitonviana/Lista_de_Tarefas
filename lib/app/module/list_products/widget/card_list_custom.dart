@@ -31,7 +31,7 @@ class CardListCustom extends StatelessWidget {
       shadowColor: isDowngrade ? Colors.blue : Colors.red,
       margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
-      elevation: 6,
+      elevation:10,
       color: isValidityColor
           ? DateIndicator().validityColor(date: date)
           : Colors.grey.shade100,
