@@ -29,7 +29,11 @@ class SqfliteDb {
   _inicialixaDB() async {
     final databasesPath = await getDatabasesPath();
     final path = join(databasesPath, 'listProduct.db');
-    var db = await openDatabase(path, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(path,
+        version: 2,
+        onCreate: _onCreate,
+        onUpgrade: _onUpgrade,
+        onDowngrade: _onDowngrade);
     return db;
   }
 
@@ -43,6 +47,22 @@ class SqfliteDb {
         amount VARCHAR,
         description VARCHAR
         );""";
+    await db.execute(sql);
+  }
+
+  _onUpgrade(Database db, int oldVersion, int version) async {
+    if (oldVersion == 1) {
+      String sql = """ ALTER TABLE $_NAMETABLE
+      ADD isDowngrade VARCHAR DEFAULT 'false'
+        ;""";
+      await db.execute(sql);
+    }
+  }
+
+  _onDowngrade(Database db, int oldVersion, int version) async {
+    String sql = """ ALTER TABLE $_NAMETABLE
+    DROP COLUMN isDowngrade
+    ;""";
     await db.execute(sql);
   }
 

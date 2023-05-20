@@ -4,6 +4,7 @@ class ProductModels {
   final String barcode;
   final String date;
   final String option;
+  final String? isDowngrade;
   final String? amount;
   final String? description;
 
@@ -13,6 +14,7 @@ class ProductModels {
     required this.barcode,
     required this.date,
     required this.option,
+    this.isDowngrade = 'false',
     this.amount,
     this.description,
   });
@@ -24,6 +26,7 @@ class ProductModels {
       'barcode': barcode,
       'date': date,
       'option': option,
+      'isDowngrade': isDowngrade,
       'amount': amount,
       'description': description,
     };
@@ -36,6 +39,7 @@ class ProductModels {
       barcode: map['barcode'],
       date: map['date'],
       option: map['option'],
+      isDowngrade: map['isDowngrade'],
       amount: map['amount'],
       description: map['description'],
     );
@@ -47,6 +51,7 @@ class ProductModels {
     String? barcode,
     String? date,
     String? option,
+    String? isDowngrade,
     String? amount,
     String? description,
   }) {
@@ -56,6 +61,7 @@ class ProductModels {
       barcode: barcode ?? this.barcode,
       date: date ?? this.date,
       option: option ?? this.option,
+      isDowngrade: isDowngrade ?? this.isDowngrade,
       amount: amount ?? this.amount,
       description: description ?? this.description,
     );
