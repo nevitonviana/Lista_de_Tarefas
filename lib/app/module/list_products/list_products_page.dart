@@ -50,7 +50,7 @@ class _ListProductsPageState extends State<ListProductsPage> {
                         date: product.date,
                         isDowngrade: Converter.isBool(product.isDowngrade),
                         isValidityColor:
-                            widget._name == 'Rebaixa' ? true : false,
+                     widget._name == 'Rebaixa' ? true : false,
                         onTap: () async {
                           await DialogView().viewData(
                             context: context,

@@ -8,4 +8,13 @@ class Converter {
       return false;
     }
   }
+
+  static data(String date){
+    if( date.isNotEmpty ){
+      return DateTime.parse(date);
+    }else{
+      return DateTime.now();
+    }
+  }
+
 }

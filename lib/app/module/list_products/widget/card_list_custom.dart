@@ -32,9 +32,9 @@ class CardListCustom extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
       elevation: 6,
-      // color: isValidityColor
-      //     ? DateIndicator().validityColor(date: date)
-      //     : Colors.grey.shade100,
+      color: isValidityColor
+          ? DateIndicator().validityColor(date: date)
+          : Colors.grey.shade100,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: GestureDetector(

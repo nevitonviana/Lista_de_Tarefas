@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/helpers/converter.dart';
 import '../../base_controller.dart';
 
 class DialogDate {
@@ -7,9 +8,10 @@ class DialogDate {
       {required BuildContext context,
       required BaseController controller,
       String? dateTime}) async {
+    print(dateTime);
     final date = await showDatePicker(
       context: context,
-      initialDate: dateTime != null ? DateTime.parse(dateTime) : DateTime.now(),
+      initialDate: dateTime != null ? Converter.data(dateTime) : DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime(2025),
       initialEntryMode: DatePickerEntryMode.calendarOnly,
