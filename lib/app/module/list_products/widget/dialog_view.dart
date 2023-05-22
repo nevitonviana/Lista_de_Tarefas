@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/helpers/format_date.dart';
 import '../../../core/widget/button_custom.dart';
+import '../../../core/widget/messages.dart';
 import '../../../models/product_models.dart';
 import 'text_view.dart';
 
@@ -26,7 +28,10 @@ class DialogView {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextView(label: "Name:", name: productModels.name),
-            TextView(label: "Codigo:", name: productModels.barcode),
+            TextView(label: "Codigo:", name: productModels.barcode,onLongPress: () async {
+              await Clipboard.setData( ClipboardData(text: productModels.barcode));
+              Messages.copiedSuccess(context);
+            },),
             TextView(
                 label: "Data:", name: Formatter().data(productModels.date)),
             TextView(label: "Opção:", name: productModels.option),

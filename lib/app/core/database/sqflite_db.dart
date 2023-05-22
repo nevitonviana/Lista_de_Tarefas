@@ -60,10 +60,10 @@ class SqfliteDb {
   }
 
   _onDowngrade(Database db, int oldVersion, int version) async {
-    String sql = """ ALTER TABLE $_NAMETABLE
-    DROP COLUMN isDowngrade
-    ;""";
-    await db.execute(sql);
+    // String sql = """ ALTER TABLE $_NAMETABLE
+    // DROP COLUMN isDowngrade
+    // ;""";
+    // await db.execute(sql);
   }
 
   Future<void> create({required ProductModels productModels}) async {

@@ -30,4 +30,13 @@ class Messages {
       ),
     );
   }
+
+  static void copiedSuccess(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.white.withAlpha(1),
+        content: const Text("Copiado"),
+      ),
+    );
+  }
 }

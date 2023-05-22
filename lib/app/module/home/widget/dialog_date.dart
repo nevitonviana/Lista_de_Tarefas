@@ -8,7 +8,6 @@ class DialogDate {
       {required BuildContext context,
       required BaseController controller,
       String? dateTime}) async {
-    print(dateTime);
     final date = await showDatePicker(
       context: context,
       initialDate: dateTime != null ? Converter.data(dateTime) : DateTime.now(),
