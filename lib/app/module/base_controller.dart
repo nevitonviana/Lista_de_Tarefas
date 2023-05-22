@@ -62,6 +62,12 @@ abstract class _BaseControllerBase with Store {
     listProduct = result;
   }
 
+  Future<void> search({required String barcode}) async {
+    listProduct.clear();
+    final result = await _productService.search(barcode: barcode);
+    listProduct = result;
+  }
+
   Future<void> update({required ProductModels productModels}) async {
     var product = productModels;
     product = productModels;

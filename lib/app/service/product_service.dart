@@ -5,6 +5,8 @@ abstract class ProductService {
 
   Future<List<ProductModels>> get({required String option});
 
+  Future<List<ProductModels>> search({required String barcode});
+
   Future<void> update({required ProductModels productModels});
 
   Future<void> delete({required int id});

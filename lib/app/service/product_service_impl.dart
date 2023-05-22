@@ -1,6 +1,5 @@
-import 'package:lista_tarefas/app/models/product_models.dart';
-
 import '../core/database/sqflite_db.dart';
+import '../models/product_models.dart';
 import 'product_service.dart';
 
 class ProductServiceImpl extends ProductService {
@@ -26,6 +25,20 @@ class ProductServiceImpl extends ProductService {
     } catch (e) {
       rethrow;
       //ToDO
+    }
+  }
+
+  @override
+  Future<List<ProductModels>> search({required String barcode}) async {
+    try {
+      final db = SqfliteDb();
+      final result = await db.search(barcode: barcode);
+      final listProduct = result.map<ProductModels>((e) {
+        return ProductModels.fromMap(e as Map<String, dynamic>);
+      }).toList();
+      return listProduct;
+    } catch (e) {
+      rethrow;
     }
   }
 

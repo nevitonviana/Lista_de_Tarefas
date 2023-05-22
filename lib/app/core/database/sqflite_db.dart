@@ -86,6 +86,17 @@ class SqfliteDb {
     }
   }
 
+  Future<List<Map>> search({required String barcode}) async {
+    var sql = await db;
+    try {
+      var result = await sql.rawQuery(
+          "SELECT * FROM $_NAMETABLE WHERE barcode = '$barcode' ORDER BY date ASC");
+      return result;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> update({required ProductModels productModels}) async {
     var sql = await db;
     try {

@@ -48,6 +48,13 @@ class HomePage extends StatelessWidget {
           textAlign: TextAlign.center,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                DialogCustom().search(context: context, controller: controller);
+              },
+              icon: const Icon(Icons.search_rounded)),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -104,7 +111,7 @@ class HomePage extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          await DialogDate().showDate(
+                          await DialogCustom().showDate(
                               context: context,
                               controller: controller,
                               dateTime: _productModels?.date);

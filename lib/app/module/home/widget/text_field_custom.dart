@@ -5,15 +5,19 @@ class TextFieldCustom extends StatelessWidget {
   final TextEditingController? textEditingController;
   final String? initialValue;
   final String label;
-  final  Icon icon;
+  final Icon icon;
   final TextInputType textInputType;
+  final Widget? suffixIcon;
+
   const TextFieldCustom({
     Key? key,
     required this.label,
     required this.icon,
     this.textEditingController,
     this.initialValue,
-    this.validator, this.textInputType = TextInputType.text,
+    this.validator,
+    this.textInputType = TextInputType.text,
+    this.suffixIcon,
   }) : super(key: key);
 
   @override
@@ -28,6 +32,7 @@ class TextFieldCustom extends StatelessWidget {
         maxLines: null,
         decoration: InputDecoration(
           prefixIcon: icon,
+          suffixIcon: suffixIcon,
           label: Text(label),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25),

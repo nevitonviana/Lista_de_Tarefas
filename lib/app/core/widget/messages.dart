@@ -9,7 +9,7 @@ class Messages {
         content: Text(
           massage,
           style: const TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 15),
         ),
         elevation: 5,
         backgroundColor: Colors.yellow,
@@ -23,10 +23,24 @@ class Messages {
         content: Text(
           "Salvo com sucesso",
           style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 15),
         ),
         elevation: 5,
         backgroundColor: Colors.blue,
+      ),
+    );
+  }
+
+  static void notFound({required BuildContext context}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          "Produto não encontrado",
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 15),
+        ),
+        elevation: 5,
+        backgroundColor: Colors.black38,
       ),
     );
   }

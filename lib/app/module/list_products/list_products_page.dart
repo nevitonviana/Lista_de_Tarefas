@@ -24,10 +24,16 @@ class ListProductsPage extends StatefulWidget {
 class _ListProductsPageState extends State<ListProductsPage> {
   final _controller = Modular.get<BaseController>();
 
+  optionsChecker() {
+    if (widget._name != 'Resultado') {
+      _controller.get(option: widget._name.toLowerCase());
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    _controller.get(option: widget._name.toLowerCase());
+    optionsChecker();
   }
 
   @override
@@ -50,7 +56,7 @@ class _ListProductsPageState extends State<ListProductsPage> {
                         date: product.date,
                         isDowngrade: Converter.isBool(product.isDowngrade),
                         isValidityColor:
-                     widget._name == 'Rebaixa' ? true : false,
+                            widget._name == 'Rebaixa' ? true : false,
                         onTap: () async {
                           await DialogView().viewData(
                             context: context,
