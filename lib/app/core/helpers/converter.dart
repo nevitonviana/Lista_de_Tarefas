@@ -18,12 +18,4 @@ class Converter {
       return DateTime.now();
     }
   }
-
-  static contain13numbers(String barcode, VoidCallback onTap) {
-    if (barcode.length == 13) {
-      return onTap;
-    } else {
-      return null;
-    }
-  }
 }

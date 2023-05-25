@@ -70,13 +70,8 @@ class DialogView {
             ),
             child: IconButton(
               disabledColor: Colors.grey,
-              onPressed: Converter.contain13numbers(
-                productModels.barcode,
-                () {
-                  _barcodeGenerator(
-                      context: context, nubarBarcode: productModels.barcode);
-                },
-              ),
+              onPressed: () => _barcodeGenerator(
+                  context: context, nubarBarcode: productModels.barcode),
               icon: const Icon(
                 Icons.qr_code_2,
               ),
@@ -107,6 +102,13 @@ _barcodeGenerator(
         barcode: Barcode.ean13(drawEndChar: false),
         height: 80,
         width: 110,
+        errorBuilder: (context, error) =>
+            const Text('Código muito pequeno, para gerar um código de barra',
+                softWrap: true,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center),
       ),
     ),
   );
