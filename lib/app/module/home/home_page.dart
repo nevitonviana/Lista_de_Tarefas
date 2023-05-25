@@ -140,8 +140,13 @@ class HomePage extends StatelessWidget {
                     icon: Icons.camera_enhance_outlined,
                     onTap: () async {
                       final result = await BarcodeScanner().scanner();
-                      if (result != '-1') {
+                      if (result != '-1' && result.length == 13) {
                         barcodeEc.text = result;
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        Messages.alert(
+                            context: context,
+                            massage: "códigos de barras inválido");
                       }
                     }),
                 const SizedBox(height: 10),

@@ -36,6 +36,7 @@ class DialogView {
               onLongPress: () async {
                 await Clipboard.setData(
                     ClipboardData(text: productModels.barcode));
+                // ignore: use_build_context_synchronously
                 Messages.copiedSuccess(context);
               },
             ),
