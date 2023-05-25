@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class Converter {
   Converter._();
 
@@ -9,12 +11,19 @@ class Converter {
     }
   }
 
-  static data(String date){
-    if( date.isNotEmpty ){
+  static data(String date) {
+    if (date.isNotEmpty) {
       return DateTime.parse(date);
-    }else{
+    } else {
       return DateTime.now();
     }
   }
 
+  static contain13numbers(String barcode, VoidCallback onTap) {
+    if (barcode.length == 13) {
+      return onTap;
+    } else {
+      return null;
+    }
+  }
 }

@@ -1,7 +1,9 @@
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../core/helpers/converter.dart';
 import '../../../core/helpers/format_date.dart';
 import '../../../core/widget/button_custom.dart';
 import '../../../core/widget/messages.dart';
@@ -28,10 +30,15 @@ class DialogView {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextView(label: "Name:", name: productModels.name),
-            TextView(label: "Codigo:", name: productModels.barcode,onLongPress: () async {
-              await Clipboard.setData( ClipboardData(text: productModels.barcode));
-              Messages.copiedSuccess(context);
-            },),
+            TextView(
+              label: "Codigo:",
+              name: productModels.barcode,
+              onLongPress: () async {
+                await Clipboard.setData(
+                    ClipboardData(text: productModels.barcode));
+                Messages.copiedSuccess(context);
+              },
+            ),
             TextView(
                 label: "Data:", name: Formatter().data(productModels.date)),
             TextView(label: "Opção:", name: productModels.option),
@@ -49,12 +56,57 @@ class DialogView {
             onTap: () async {
               await Modular.to.pushNamed("/home", arguments: productModels);
             },
+            width: 120,
             name: 'Editar',
             color: Colors.blue,
             icon: Icons.edit,
           ),
+          const SizedBox(width: 10),
+          Ink(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.blue.shade200,
+            ),
+            child: IconButton(
+              disabledColor: Colors.grey,
+              onPressed: Converter.contain13numbers(
+                productModels.barcode,
+                () {
+                  _barcodeGenerator(
+                      context: context, nubarBarcode: productModels.barcode);
+                },
+              ),
+              icon: const Icon(
+                Icons.qr_code_2,
+              ),
+              color: Colors.black,
+              iconSize: 35,
+            ),
+          )
         ],
       ),
     );
   }
+}
+
+_barcodeGenerator(
+    {required BuildContext context, required String nubarBarcode}) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Align(
+        alignment: Alignment.topRight,
+        child: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.clear_sharp),
+        ),
+      ),
+      content: BarcodeWidget(
+        data: nubarBarcode,
+        barcode: Barcode.ean13(drawEndChar: false),
+        height: 80,
+        width: 110,
+      ),
+    ),
+  );
 }
