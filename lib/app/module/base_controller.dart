@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
+import '../core/notifications/notification_service.dart';
 import '../models/product_models.dart';
 import '../service/product_service.dart';
 
@@ -86,5 +87,33 @@ abstract class _BaseControllerBase with Store {
   Future<void> delete({required ProductModels productModels}) async {
     await _productService.delete(id: productModels.id!);
     await get(option: productModels.option);
+  }
+
+  Future<void> notificationData() async {
+    await get(option: 'rebaixa');
+
+    for (var product in listProduct) {
+      final dataDifference =
+          DateTime.now().difference(DateTime.parse(product.date)).inDays;
+      if (dataDifference == 0) {
+        NotificationService().showNotification(
+          notification: CustomNotification(
+            id: product.id,
+            title: "produto Vencido",
+            body: product.name,
+            payload: "/a",
+          ),
+        );
+      } else if (dataDifference == -10) {
+        NotificationService().showNotification(
+          notification: CustomNotification(
+            id: product.id,
+            title: "perdir rebaixar",
+            body: product.name,
+            payload: "/a",
+          ),
+        );
+      }
+    }
   }
 }

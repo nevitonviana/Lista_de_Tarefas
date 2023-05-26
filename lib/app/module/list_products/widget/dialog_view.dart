@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../core/helpers/converter.dart';
 import '../../../core/helpers/format_date.dart';
 import '../../../core/widget/button_custom.dart';
 import '../../../core/widget/messages.dart';
