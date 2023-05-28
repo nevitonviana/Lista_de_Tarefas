@@ -1,21 +1,17 @@
+import 'dart:ui';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class CustomNotification {
-  final int id;
-  final String? title;
-  final String? body;
-  final String? payload;
-
-  CustomNotification({required this.id, this.title, this.body, this.payload});
-}
+import '../../models/product_models.dart';
+import '../helpers/format_date.dart';
 
 class NotificationService {
-  late FlutterLocalNotificationsPlugin localNotificationsPlugin;
-  late AndroidNotificationDetails androidDetails;
+  late FlutterLocalNotificationsPlugin _localNotificationsPlugin;
+  late AndroidNotificationDetails _androidDetails;
 
   NotificationService() {
-    localNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    _localNotificationsPlugin = FlutterLocalNotificationsPlugin();
     _setupNotification();
   }
 
@@ -26,7 +22,7 @@ class NotificationService {
   _initializeNotifications() async {
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
 
-    await localNotificationsPlugin.initialize(
+    await _localNotificationsPlugin.initialize(
       const InitializationSettings(
         android: android,
       ),
@@ -40,30 +36,31 @@ class NotificationService {
     }
   }
 
-  showNotification({required CustomNotification notification}) {
-    androidDetails = const AndroidNotificationDetails(
-      'lembretes_notifications_x',
-      'Lambretes',
-      channelDescription: 'este e ',
+  showNotification({required String title, required ProductModels product}) {
+    _androidDetails = const AndroidNotificationDetails(
+      'channel id',
+      'channel name',
+      channelDescription: 'channel description',
       importance: Importance.max,
       priority: Priority.max,
       enableVibration: true,
+      playSound: true,
+      color: Color(0x000b0bbb),
     );
 
-    localNotificationsPlugin.show(
-      notification.id,
-      notification.title,
-      notification.body,
+    _localNotificationsPlugin.show(
+      product.id!.toInt(),
+      title,
+      "Produtor: ${product.name}  -  Data: ${Formatter().data(product.date)}",
       NotificationDetails(
-        android: androidDetails,
+        android: _androidDetails,
       ),
-      payload: notification.payload,
     );
   }
 
   checkForNotifications() async {
     final details =
-        await localNotificationsPlugin.getNotificationAppLaunchDetails();
+        await _localNotificationsPlugin.getNotificationAppLaunchDetails();
     if (details != null && details.didNotificationLaunchApp) {
       _onDidReceiveNotificationResponse(details.notificationResponse);
     }

@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
+import '../core/helpers/converter.dart';
 import '../core/notifications/notification_service.dart';
 import '../models/product_models.dart';
 import '../service/product_service.dart';
@@ -93,25 +94,18 @@ abstract class _BaseControllerBase with Store {
     await get(option: 'rebaixa');
 
     for (var product in listProduct) {
-      final dataDifference =
+      var dataDifference =
           DateTime.now().difference(DateTime.parse(product.date)).inDays;
-      if (dataDifference == 0) {
+      var isBool = Converter.isBool(product.isDowngrade);
+      if (dataDifference == 0 && isBool == true) {
         NotificationService().showNotification(
-          notification: CustomNotification(
-            id: product.id,
-            title: "produto Vencido",
-            body: product.name,
-            payload: "/a",
-          ),
+          title: "Produto venciado",
+          product: product,
         );
-      } else if (dataDifference == -10) {
+      } else if (dataDifference == -10 && isBool == false) {
         NotificationService().showNotification(
-          notification: CustomNotification(
-            id: product.id,
-            title: "perdir rebaixar",
-            body: product.name,
-            payload: "/a",
-          ),
+          title: "Pedir rebaixar ",
+          product: product,
         );
       }
     }
