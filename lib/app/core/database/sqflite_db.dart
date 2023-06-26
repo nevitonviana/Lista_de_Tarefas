@@ -45,7 +45,8 @@ class SqfliteDb {
         date VARCHAR NOT NULL,
         option VARCHAR NOT NULL,
         amount VARCHAR,
-        description VARCHAR
+        description VARCHAR,
+        isDowngrade VARCHAR DEFAULT 'false'
         );""";
     await db.execute(sql);
   }

@@ -26,6 +26,10 @@ class DropButtonCustom extends StatelessWidget {
             child: Text("Rebaixa"),
           ),
           DropdownMenuItem(
+            value: 'consumo',
+            child: Text("Consumo"),
+          ),
+          DropdownMenuItem(
             value: "quebra",
             child: Text("Quebra"),
           ),

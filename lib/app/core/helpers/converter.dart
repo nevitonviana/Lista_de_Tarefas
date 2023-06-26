@@ -10,7 +10,7 @@ class Converter {
   }
 
   static data(String date) {
-    if (date.isNotEmpty) {
+    if (date.isNotEmpty && date.toString() != 'null') {
       return DateTime.parse(date);
     } else {
       return DateTime.now();
